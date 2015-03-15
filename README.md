@@ -5,7 +5,7 @@
 [![Build status][travis-img]][travis-url]
 [![Test coverage][coveralls-img]][coveralls-url]
 
-Validat the property types of an object against a schema.
+Validate the property types of an object against a schema.
 
 ## Installation
 
