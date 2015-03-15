@@ -1,0 +1,40 @@
+{
+  "name": "valid-object",
+  "version": "1.0.0",
+  "description": "Validate the property types of an object against a schema.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gummesson/valid-object.git"
+  },
+  "keywords": [
+    "object",
+    "schema",
+    "property",
+    "properties",
+    "type",
+    "types",
+    "validate",
+    "validation"
+  ],
+  "author": "Ellen Gummesson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gummesson/valid-object/issues"
+  },
+  "homepage": "https://github.com/gummesson/valid-object",
+  "dependencies": {
+    "split-object": "^2.1.0",
+    "type-of": "^2.0.1"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.7",
+    "tape": "^3.5.0"
+  },
+  "scripts": {
+    "test": "node test/",
+    "cover": "istanbul cover test/",
+    "test:cover": "npm run cover && coveralls < coverage/lcov.info"
+  }
+}
