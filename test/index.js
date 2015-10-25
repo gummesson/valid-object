@@ -31,7 +31,8 @@ test('validObject(obj, schema)', function(t) {
     var falsy = validObject({
       name: 1337,
       human: 'undecided',
-      likes: { nothing: true }
+      likes: { nothing: true },
+      extra: 'garbage'
     }, schema)
 
     assert.deepEqual(falsy, [
@@ -49,6 +50,11 @@ test('validObject(obj, schema)', function(t) {
         property: 'likes',
         value: { nothing: true },
         type: { expected: 'array', actual: 'object' }
+      },
+      {
+        property: 'extra',
+        value: 'garbage',
+        type: { expected: 'undefined', actual: 'string' }
       }
     ])
     assert.end()

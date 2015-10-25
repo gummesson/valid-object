@@ -5,6 +5,8 @@
 var split  = require('split-object')
 var typeOf = require('type-of')
 
+var keys = Object.keys
+
 /**
  *  Validate `obj` against `schema`.
  *
@@ -18,10 +20,23 @@ var typeOf = require('type-of')
 function validObject(obj, schema) {
   var errors = []
   split(schema)
-    .forEach(function(prop) {
-      var error = checkProp(obj, prop)
-      if (error) errors.push(error)
-    })
+    .forEach(validate)
+
+  if (keys(obj).length > keys(schema).length) {
+    split(obj)
+      .filter(additional)
+      .forEach(validate)
+  }
+
+  function validate(prop) {
+    var error = checkProp(obj, prop)
+    if (error) errors.push(error)
+  }
+
+  function additional(prop) {
+    return !schema.hasOwnProperty(prop.key)
+  }
+
   var results = errors.length
     ? errors
     : true
@@ -61,7 +76,7 @@ function formatProp(value, type, prop) {
     property: prop.key,
     value: value,
     type: {
-      expected: prop.value.type,
+      expected: prop.value.type || 'undefined',
       actual: type
     }
   }
